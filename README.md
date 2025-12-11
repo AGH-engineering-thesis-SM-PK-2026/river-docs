@@ -2,9 +2,9 @@
 
 ## Table of Contents
 
-[1. Guide](guide.md)
-[2. Limits](limit.md)
-[3. Protocols](protocols.md)
+1. [Guide](guide.md)
+2. [Limits](limit.md)
+3. [Protocols](protocols.md)
 
 ## Introduction
 
