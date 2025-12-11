@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Guide](guide.md)
-2. [Limits](limit.md)
+2. [Limits](limits.md)
 3. [Protocols](protocols.md)
 
 ## Introduction
