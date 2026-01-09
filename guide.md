@@ -1,5 +1,9 @@
 # Guide
 
+## Hardware requirements
+
+- ZYBO board with the VGA port (older revision of the board)
+- USB-to-UART bridge (CP2102, PL2302)
 
 ## Setup
 
@@ -12,10 +16,12 @@ To compile assembly and C programs, the *riscv-none-elf* toolchain needs to be i
 Clone the repo:
 
 ```sh
-git clone https://github.com/
-```
+git clone https://github.com/AGH-engineering-thesis-SM-PK-2026/core-draft.git
+git clone https://github.com/AGH-engineering-thesis-SM-PK-2026/rivctl.git
+git clone https://github.com/AGH-engineering-thesis-SM-PK-2026/gcc-rv.git
+``` 
 
-Alternatively go to Go to [RIVER repo](https://github.com/) and clone via webpage. This is the recommended way, since all the tools, hardware and userland source code are ensured to be compatible with each other.
+> In the future all these repositories might be synchronised into one git repo. This would ensure all hardware and software to be compatible with each other.
 
 ### Install the *Vivado* suite
 
@@ -44,7 +50,7 @@ Install the following packages:
 >alias riscv-none-elf-objdump=risv32-elf-objdump
 >```
 >
-> There are ongoing efforts for universal build tool that is able to workaround these inconsistencies.
+> In the future the build tools might be able to workaround these inconsistencies.
 
 Next make sure you're in your home directory and download and configure the `rv.sh`:
 
@@ -76,7 +82,6 @@ Use *'Shift-H'* to view built-in help dialog.
 You might need to install USB-to-UART converter drivers. Refer to the manufacturer's manual.
 
 ## Run
-
 
 Open `riscv-core` in *Vivado* suite. Click *Generate bitstream* in the leftmost pane. Then navigate to *Hardware Manager* also in leftmost pane and connect to device automatically (`Open target > Auto Connect`).
 
