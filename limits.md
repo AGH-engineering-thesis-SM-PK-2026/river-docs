@@ -4,15 +4,7 @@
 
 #### Program and data memory sizes
 
-CPU cannot access more than 1024 words (4096 bytes) of both program and data memory. Overflows will not saturate and will wrap (eg. address 4096 becomes 0).
-
-#### Non-word memory access
-
-Currently the memory modules does not permit non-word aligned reads/writes. This means these instructions: `sb`, `sh`, `lb`, `lh` will cause hardware exceptions, halting the program, or lead to unexpected program behaviour.
-
-This problem might be fixed in the future.
-
-Never-the-less other peripherals might support reading or writing bytes or half-words to designated bus device location. The peripherals are more free to do anything with the address or data and can ignore parts/one of them/both of them.
+Memory has a size of 4KB. Accessing higher adresses will either cause memory error (if within address space of memory module) or will always return 0 on read.
 
 #### Program space is not mapped onto system bus
 
@@ -22,9 +14,9 @@ There is no way for the CPU to read the program memory other than to fetch the i
 
 #### No support global variables
 
-The global variables reside on `.data` (or `.bss` if uninitialized) segment, which is neither uploaded to the device, nor the CPU has any way of extracting the data from program file.
+The global variables reside on `.data` (or `.bss` if uninitialized) segment, which is neither uploaded to the device, nor the CPU has any way of extracting the data from program file. The only way to initialize a global variable right now is by writing to it inside code called from main(). In this case, compiler uses ADDI/LUI instructions to create necessary value in register and then writes it to the memory.
 
-To make the code compatible replace this:
+The same goes for global constants. To make the code compatible replace this:
 ```c
 static const int magic = 0x42;
 ```
@@ -35,9 +27,9 @@ with macro definitions:
 
 Static structs require more elaborate changes, however it can still be done rather easily most of the time.
 
-#### Risky `char` and `short`
+#### No support for literals
 
-There is no guarantee, even with `register` that the variables of types `char` and `short` will not be placed on stack - therefore requiring non-word memory access, and possibly causing either crashes or memory corruption.
+Same as above - literals may reside in .data section. Integer/single char literals almost exclusively cause the compiler to create a value in register, but string literals will not work.
 
 #### No support for multiplication or division
 
