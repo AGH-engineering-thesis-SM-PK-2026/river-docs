@@ -36,11 +36,9 @@ Install the following packages:
 | Distro / OS     | Command line                                              |
 | --------------- | --------------------------------------------------------- |
 | Alpine Linux    | `apk add gcc-riscv-none-elf `                             |
-| Fedora Linux    | `dnf install binutils-riscv64-linux-gnu` (?)              |
+| Fedora Linux    | `dnf install binutils-riscv64-linux-gnu`                  |
 | Arch Linux      | `pacman -S riscv32-elf-binutils`                          |
 | Void Linux      | not supported                                             |
-| OpenBSD         | `pkg_add riscv-elf-gcc` (?)                               |
-| FreeBSD         | `pkg install riscv32-unknown-elf-gcc` (?)                 |
 
 > Unfortunately the packages differs slightly between the distros and OSes, necessitating aliases to `gcc`, `as` and `objdump` binaries on some platforms. As an example on Linux Arch, the user would need to add this to their `~/.profile`:
 >
@@ -51,6 +49,11 @@ Install the following packages:
 >```
 >
 > In the future the build tools might be able to workaround these inconsistencies.
+
+> If the binary packages don't work, the RISC-V toolchain can be built from source:
+>```sh
+>git clone https://github.com/riscv/riscv-gnu-toolchain 
+>```
 
 Next make sure you're in your home directory and download and configure the `rv.sh`:
 
