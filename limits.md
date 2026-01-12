@@ -22,7 +22,7 @@ There is no way for the CPU to read the program memory other than to fetch the i
 
 #### No support global variables
 
-The global variables reside on `.data` (or `.bss` if uninitialized) segment, which is neither uploaded to the device, nor the CPU has any way of extracting the data from program file [1].
+The global variables reside on `.data` (or `.bss` if uninitialized) segment, which is neither uploaded to the device, nor the CPU has any way of extracting the data from program file.
 
 To make the code compatible replace this:
 ```c
@@ -37,7 +37,7 @@ Static structs require more elaborate changes, however it can still be done rath
 
 #### Risky `char` and `short`
 
-There is no guarantee, even with `register` that the variables of types `char` and `short` will not be placed on stack - therefore requiring non-word memory access [2], and possibly causing either crashes or memory corruption.
+There is no guarantee, even with `register` that the variables of types `char` and `short` will not be placed on stack - therefore requiring non-word memory access, and possibly causing either crashes or memory corruption.
 
 #### No support for multiplication or division
 
@@ -52,6 +52,3 @@ There is no circutry to handle floating point arithemtic - use fixed point decim
 The standard library has not been reimplemented for this system, since it is too large to fit into the program memory. There are a variety of similar, simpler functions for printing on terminal (no file support) and other I/O. 
 
 Peripherals definitions are provided in `sysdev.h`. It also includes `stdint.h` for explicit integers typedefs. 
-
-[1]: (#program-space-is-not-mapped-onto-system-bus)
-[2]: (#non-word-memory-access)
